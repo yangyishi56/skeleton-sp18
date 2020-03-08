@@ -3,9 +3,9 @@ public class LinkedListDeque<T> {
     private int size;
 
     private class Node {
-        public Node pre;
-        public T item;
-        public Node next;
+        private Node pre;
+        private T item;
+        private Node next;
 
         //Node class constructor
         public Node(Node p, T i, Node n) {
@@ -22,24 +22,26 @@ public class LinkedListDeque<T> {
         sentinel.pre = sentinel;
     }
 
+    /*
     public LinkedListDeque(T x) {
         sentinel = new Node(null, null, null);
         sentinel.next = new Node(sentinel, x, sentinel);
         size = 1;
     }
+    */
 
     public void addFirst(T item) {
         Node temp = sentinel.next;
         sentinel.next = new Node(sentinel, item, temp);
         temp.pre = sentinel.next;
-        size += 1;
+        size = size + 1;
     }
 
     public void addLast(T item) {
         Node temp = sentinel.pre;
         sentinel.pre = new Node(temp, item, sentinel);
         temp.next = sentinel.pre;
-        size += 1;
+        size = size + 1;
 
     }
 
@@ -53,7 +55,7 @@ public class LinkedListDeque<T> {
 
     public void printDeque() {
         Node temp = sentinel.next;
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             System.out.print(temp.item);
             System.out.print(" ");
             temp = temp.next;
@@ -62,30 +64,36 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if(size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         Node temp = sentinel.next;
         sentinel.next = temp.next;
         temp.next.pre = sentinel;
-        size -= 1;
+        size = size - 1;
         return temp.item;
     }
 
     public T removeLast() {
-        if(size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
 
         Node temp = sentinel.pre;
         sentinel.pre = temp.pre;
         temp.pre.next = sentinel;
-        size -= 1;
+        size = size - 1;
         return temp.item;
     }
 
     public T get(int index) {
         Node temp = sentinel.next;
-        if(index > size - 1) return null;
+        if (index > size - 1) {
+            return null;
+        }
         int count = 0;
-        while(count != index) {
+        while (count != index) {
             temp = temp.next;
             count++;
         }
@@ -93,26 +101,20 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursiveHelp(Node p, int i) {
-        if (i == 0){
+        if (i == 0) {
             return p.item;
         } else {
             return getRecursiveHelp(p.next, i-1);
         }
     }
 
-    public T getRecursive(int index) {
+    private T getRecursive(int index) {
         int length = size;
-        if (index > length -1){
+        if (index > length - 1) {
             return null;
         } else {
             return getRecursiveHelp(sentinel.next, index);
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Running tests.\n");
-        LinkedListDeque<Integer> l = new LinkedListDeque<>(1);
-        System.out.println(l.size);
     }
 
 }
