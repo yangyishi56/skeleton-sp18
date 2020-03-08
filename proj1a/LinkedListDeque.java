@@ -100,15 +100,15 @@ public class LinkedListDeque<T> {
         return temp.item;
     }
 
-    public T getRecursiveHelp(Node p, int i) {
+    private T getRecursiveHelp(Node p, int i) {
         if (i == 0) {
             return p.item;
         } else {
-            return getRecursiveHelp(p.next, i-1);
+            return getRecursiveHelp(p.next, i - 1);
         }
     }
 
-    private T getRecursive(int index) {
+    public T getRecursive(int index) {
         int length = size;
         if (index > length - 1) {
             return null;
