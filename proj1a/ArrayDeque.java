@@ -9,7 +9,7 @@ public class ArrayDeque<T> {
         items = (T []) new Object[8];
         size = 0;
         nextFirst = 0;
-        nextLast = items.length - 1;
+        nextLast = 1;
     }
 
     //resize the underlying array to the target capacity
@@ -30,7 +30,10 @@ public class ArrayDeque<T> {
         }
 
         items[nextFirst] = x;
-        nextFirst = (nextFirst + 1) % items.length;
+        nextFirst = nextFirst - 1;
+        if (nextFirst == -1) {
+            nextFirst = items.length - 1;
+        }
         size = size + 1;
 
     }
@@ -42,10 +45,7 @@ public class ArrayDeque<T> {
         }
 
         items[nextLast] = x;
-        nextLast = nextLast - 1;
-        if (nextLast == -1) {
-            nextLast = items.length - 1;
-        }
+        nextLast = (nextLast + 1) % items.length;
         size = size + 1;
     }
 
@@ -88,7 +88,10 @@ public class ArrayDeque<T> {
             resize((int) (items.length * 0.5));
         }
 
-        nextLast = (nextLast - 1) % items.length;
+        nextLast = nextLast - 1;
+        if (nextLast == -1) {
+            nextLast = items.length - 1;
+        }
         size = size - 1;
         return items[nextLast];
     }
