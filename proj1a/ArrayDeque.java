@@ -15,8 +15,8 @@ public class ArrayDeque<T> {
     //resize the underlying array to the target capacity
     private void resize(int capacity) {
         T[] a = (T[]) new Object[capacity];
-        for(int i = 0; i < size; i++) {
-            a[i] = items[(nextFirst + 1 + i)%items.length];
+        for (int i = 0; i < size; i++) {
+            a[i] = items[(nextFirst + 1 + i ) % items.length];
         }
         items = a;
         nextFirst = items.length - 1;
@@ -55,7 +55,7 @@ public class ArrayDeque<T> {
     public void printDeque() {
         int index = nextFirst + 1;
         for (int i = 0; i < size; i++) {
-            System.out.print(items[index%(items.length)]);
+            System.out.print(items[index % (items.length)]);
             System.out.print(" ");
             index++;
         }
@@ -66,11 +66,11 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        if (items.length > 16 && size - 1 < items.length * 0.25 ) {
+        if (items.length > 16 && size - 1 < items.length * 0.25) {
             resize((int) (items.length * 0.5));
         }
 
-        nextFirst = (nextFirst + 1)%items.length;
+        nextFirst = (nextFirst + 1) % items.length;
         size = size - 1;
         return items[nextFirst];
     }
@@ -79,11 +79,11 @@ public class ArrayDeque<T> {
         if (size == 0) {
             return null;
         }
-        if (items.length > 16 && size - 1 < items.length * 0.25 ) {
+        if (items.length > 16 && size - 1 < items.length * 0.25) {
             resize((int) (items.length * 0.5));
         }
 
-        nextLast = (nextLast - 1)%items.length;
+        nextLast = (nextLast - 1) % items.length;
         size = size - 1;
         return items[nextLast];
     }
@@ -92,7 +92,7 @@ public class ArrayDeque<T> {
         if (index > size - 1) {
             return null;
         }
-        return items[(nextFirst + 1 + index)%items.length];
+        return items[(nextFirst + 1 + index) % items.length];
     }
 
     public static void main(String[] args) {
@@ -102,7 +102,5 @@ public class ArrayDeque<T> {
         a.addFirst(2);
         System.out.println(a.size);
     }
-
-
 
 }
