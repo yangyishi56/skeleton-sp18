@@ -8,11 +8,15 @@ public class Palindrome {
     }
 
     public boolean isPalindrome(String word) {
-        if (word == null || word.length() == 0) return true;
+        if (word == null || word.length() == 0) {
+            return true;
+        }
         int left = 0, right = word.length() - 1;
 
         while (left < right) {
-            if (word.charAt(left) != word.charAt(right)) return false;
+            if (word.charAt(left) != word.charAt(right)) {
+                return false;
+            }
             else {
                 left++;
                 right--;

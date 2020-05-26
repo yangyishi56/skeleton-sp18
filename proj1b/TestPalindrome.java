@@ -26,6 +26,8 @@ public class TestPalindrome {
 
         assertFalse(palindrome.isPalindrome("caac", new OffByOne()));
         assertTrue(palindrome.isPalindrome("cabb", new OffByOne()));
+        assertTrue(palindrome.isPalindrome("c"));
+        assertTrue(palindrome.isPalindrome(""));
     }
 
 
