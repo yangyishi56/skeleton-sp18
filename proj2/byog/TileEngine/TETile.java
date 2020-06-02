@@ -2,6 +2,8 @@ package byog.TileEngine;
 
 import java.awt.Color;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import edu.princeton.cs.introcs.StdDraw;
